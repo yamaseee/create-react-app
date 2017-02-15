@@ -39,6 +39,7 @@ class App extends Component {
       errorMessage: 'Please supply a todo name'
     })
   }
+
   handleSubmit = (evt) => {
     evt.preventDefault()
     const newId = generateId()
@@ -50,7 +51,12 @@ class App extends Component {
       errorMessage: ''
     })
     createTodo(newTodo)
-      .then(() => console.log('Todo added'))
+      .then(() => this.showTempMessage('Todo added'))
+  }
+
+  showTempMessage = (msg) => {
+    this.setState({message: msg})
+    setTimeout(() => this.setState({message: ''}), 2500)
   }
 
   handleInputChange = (evt) => {
@@ -70,6 +76,7 @@ class App extends Component {
         </div>
         <div className="Todo_App">
           {this.state.errorMessage && <span className='error'>{this.state.errorMessage}</span>}
+          {this.state.message && <span className='success'>{this.state.message}</span>}
           <TodoForm handleInputChange={this.handleInputChange}
             currentTodo={this.state.currentTodo}
             handleSubmit={submitHandler}/>
