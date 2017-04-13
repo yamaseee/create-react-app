@@ -1,0 +1,13 @@
+--install jsonServer
+npm i -g json-server
+  426  sudo npm i -g json-server
+  427  json-server -p 8080
+
+--Loading db.json
+json-server -p 8080 --watch db.json
+
+--start
+npm start
+
+-- test
+npm test
